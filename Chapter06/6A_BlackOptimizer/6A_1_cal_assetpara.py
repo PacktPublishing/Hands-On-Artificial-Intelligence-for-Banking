@@ -2,16 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 12 23:59:17 2018
-
 @author: jeff
 As a CFA, the coding here is for educational purpose - it is not intended to be use as any form of investment advisor.
 Please use the code esp on the choice of asset with a grain of salt!!!!
 """
 '''*************************************
 #1. Import libraries and key varable values
-
 '''
-QUANDLKEY = '<Enter your Quandl APT key here>'
+QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 
 import quandl
 import pandas as pd
@@ -58,7 +56,6 @@ def download_tkr(tkr,date_dict):
 
 '''*************************************
 #3. Market Return
-
 '''
 
 #day count
@@ -80,6 +77,7 @@ rf_pd['year'] = rf_pd.index.year
 rf_gp = rf_pd.groupby(['year']).count()
 rf_gp['Day_cnt'] = rf_gp['Value']
 rf_gp['year'] = rf_gp.index
+rf_gp.reset_index(drop=True,inplace=True)
 rf_gp = rf_gp.drop('Value',axis = 1)
 rf_pd_i =  rf_pd.merge(rf_gp,on='year')
 #daily return at daily interest rate
@@ -167,4 +165,3 @@ f=open('para_dict.pkl','wb+')
 pickle.dump(para_dict,f)
 
 master_pd.to_csv('master_data.csv')
-
