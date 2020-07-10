@@ -1,0 +1,103 @@
+Characteristic,f_Characteristic,Net Worth,Net Worth (Excluding Equity in Own Home),Assets at Financial Institutions,Interest Earning ,Regular Checking Accounts,Other Interest Earning Assets,f_Net Worth,f_Net Worth (Excluding Equity in Own Home),f_Assets at Financial Institutions,f_Interest Earning ,f_Regular Checking Accounts,f_Other Interest Earning Assets
+Total,Total,"81,850","25,230","4,000","4,800","1,000","3,000",0,0,0,0,0,0
+Race and Hispanic Origin of Householder,Race and Hispanic Origin of Householder,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+White alone,Race and Hispanic Origin of Householder,"102,800","33,570","4,700","5,040","1,000","4,000",20950,8340,700,240,0.2,1000
+".White alone, not Hispanic",Race and Hispanic Origin of Householder,"130,800","47,850","5,500","6,000","1,000","4,000",48950,22620,1500,1200,0.4,1000
+Black alone,Race and Hispanic Origin of Householder,"9,590","3,339","1,000","1,000",450,800,-72260,-21891,-3000,-3800.2,-549.5,-2200.3
+Asian alone,Race and Hispanic Origin of Householder,"156,500","65,120","9,000","8,000","2,500",0,74650,39890,5000,3200,1500.4,-3000
+Other (residual),Race and Hispanic Origin of Householder,"25,520","7,241","1,448","2,000",450,0,-56330,-17989,-2552,-2800,-550,-3000
+Hispanic origin (any race),Race and Hispanic Origin of Householder,"17,530","6,253","1,500","1,300",600,0,-64320,-18977,-2500,-3500,-399.6,-3000
+Not of Hispanic origin,Race and Hispanic Origin of Householder,"99,180","33,260","4,630","5,000","1,000","3,100",17330,8030,630,200,0.2,100
+Nativity of Household Members,Nativity of Household Members,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+At least one foreign-born household member,Nativity of Household Members,"55,300","17,000","4,000","4,000","1,100","5,000",-26550,-8230,0,-800,100.4,2000
+Native,Nativity of Household Members,"88,980","28,420","4,000","5,000",900,"3,000",7130,3190,0,200,-99.6,0
+Age of Householder,Age of Householder,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Less than 35 years,Age of Householder,"7,670","4,661","2,200","2,000",800,570,-74180,-20569,-1800,-2800,-199.4,-2429.8
+35 to 44 years,Age of Householder,"55,390","21,870","3,150","3,000",950,"1,000",-26460,-3360,-850,-1800,-49.4,-2000.2
+45 to 54 years,Age of Householder,"98,790","33,940","3,500","4,000",880,"1,200",16940,8710,-500,-800,-119.8,-1800
+55 to 64 years,Age of Householder,"163,300","61,390","5,000","6,000","1,000","5,700",81450,36160,1000,1200,0.4,2700
+65 years and over,Age of Householder,"198,000","53,540","8,000","11,900","1,000","10,000",116150,28310,4000,7100,0.4,7000
+.65 to 69 years,Age of Householder,"193,400","66,250","6,001","9,731","1,000","10,000",111550,41020,2001,4931,0.1,7000
+.70 to 74 years,Age of Householder,"209,200","62,560","7,000","10,000",823,"10,000",127350,37330,3000,5200,-176.4,7000
+.75 and over,Age of Householder,"194,900","45,740","10,200","16,000","1,200","17,000",113050,20510,6200,11200,200.4,14000
+Age Composition of the Household,Age Composition of the Household,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+No children under 18,Age Composition of the Household,"101,100","30,890","4,995","5,554","1,000","5,000",19250,5660,995,754,0.4,2000
+One or more children under 18,Age Composition of the Household,"48,780","16,330","2,700","2,700",738,"1,000",-33070,-8900,-1300,-2100,-261.5,-2000.1
+.Youngest child under 5,Age Composition of the Household,"26,180","9,621","2,525","2,520",800,600,-55670,-15609,-1475,-2280,-199.8,-2400.1
+.Youngest child 5 to 9,Age Composition of the Household,"50,110","17,580","2,100","2,200",600,"1,000",-31740,-7650,-1900,-2600,-400.1,-2000
+.Youngest child 10 to 18,Age Composition of the Household,"86,350","27,650","3,200","3,200",850,"1,200",4500,2420,-800,-1600,-149.9,-1800
+Highest Level of Educational Attainment in the Household,Highest Level of Educational Attainment in the Household,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+No high school diploma,Highest Level of Educational Attainment in the Household,"5,200","1,663",500,800,250,0,-76650,-23567,-3499.9,-4000.2,-749.7,-3000
+High school graduate only,Highest Level of Educational Attainment in the Household,"36,340","8,142","1,424","2,000",500,"3,000",-45510,-17088,-2576,-2800,-499.9,0
+"Some college, no degree",Highest Level of Educational Attainment in the Household,"40,100","11,480","1,775","1,800",500,"2,000",-41750,-13750,-2225,-3000,-499.3,-1000
+Associate's degree,Highest Level of Educational Attainment in the Household,"76,010","26,390","2,900","3,000",800,"1,800",-5840,1160,-1100,-1800,-199.2,-1200
+Bachelor's degree,Highest Level of Educational Attainment in the Household,"149,300","70,550","6,742","6,000","1,460","2,000",67450,45320,2742,1200,460.4,-1000
+Graduate or professional degree,Highest Level of Educational Attainment in the Household,"314,700","183,100","15,000","13,000","2,000","8,000",232850,157870,11000,8200,1000.4,5000
+Single-Person Households,Single-Person Households,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Total,Single-Person Households,"40,500","10,640","2,500","3,500",700,"5,000",-41350,-14590,-1500,-1300,-300.1,2000
+.Less than 35 years,Single-Person Households,"4,166","3,310","2,000","1,500",650,0,-77684,-21920,-2000,-3300,-349.9,-3000
+.35 to 54 years,Single-Person Households,"26,820","10,440","1,850","2,000",500,0,-55030,-14790,-2150,-2800,-499.2,-3000
+.55 to 64 years,Single-Person Households,"49,110","10,570","2,000","3,000",500,"4,000",-32740,-14660,-2000,-1800,-499.8,1000
+.65 years and over,Single-Person Households,"118,700","22,150","5,053","10,000","1,000","14,680",36850,-3080,1053,5200,-0.1,11680
+Households of Any Size,Households of Any Size,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Married-couple households,Households of Any Size,"175,600","78,130","6,800","7,000","1,100","4,000",93750,52900,2800,2200,100.4,1000
+.Less than 35 years,Households of Any Size,"28,520","14,150","4,000","3,200","1,000",500,-53330,-11080,0,-1600,0.4,-2499.7
+.35 to 54 years,Households of Any Size,"145,400","71,810","5,500","5,025","1,000","1,000",63550,46580,1500,225,0.4,-2000
+.55 to 64 years,Households of Any Size,"307,100","157,900","9,000","10,000","1,300","10,000",225250,132670,5000,5200,300.4,7000
+.65 years and over,Households of Any Size,"331,200","151,900","13,800","18,000","1,500","10,000",249350,126670,9800,13200,500.4,7000
+Male householder,Households of Any Size,"30,880","10,650","2,505","2,600","1,000","3,000",-50970,-14580,-1495,-2200,0,0
+.Less than 35 years,Households of Any Size,"6,768","4,704","2,310","1,500","1,000",0,-75082,-20526,-1690,-3300,0.3,-3000
+.35 to 54 years,Households of Any Size,"34,700","12,270","2,300","2,000",920,0,-47150,-12960,-1700,-2800,-79.8,-3000
+.55 to 64 years,Households of Any Size,"50,510","13,440","2,500","3,000",900,0,-31340,-11790,-1500,-1800,-99.9,-3000
+.65 years and over,Households of Any Size,"116,500","28,300","6,000","11,830","1,000","10,000",34650,3070,2000,7030,0.3,7000
+Female householder,Households of Any Size,"25,550","6,099","1,600","2,000",500,"2,000",-56300,-19131,-2400,-2800,-499.7,-1000
+.Less than 35 years,Households of Any Size,"1,533",861,"1,050",900,500,0,-80317,-24368.9,-2950,-3899.6,-500.1,-3000
+.35 to 54 years,Households of Any Size,"15,080","4,842","1,050","1,008",400,600,-66770,-20388,-2950,-3792,-599.4,-2400.5
+.55 to 64 years,Households of Any Size,"53,900","10,300","1,600","3,000",500,"2,000",-27950,-14930,-2400,-1800,-499.9,-1000
+.65 years and over,Households of Any Size,"116,200","18,080","4,000","7,400",700,"11,600",34350,-7150,0,2600,-299.3,8600
+Labor Force Activity of Household Members Under 65,Labor Force Activity of Household Members Under 65,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+At least one household member with labor force activity during the year,Labor Force Activity of Household Members Under 65,"69,780","25,790","3,900","4,000","1,000","1,700",-12070,560,-100,-800,0.2,-1300
+At least one household member who worked full-time for the entire year,Labor Force Activity of Household Members Under 65,"99,300","43,360","4,900","4,700","1,000","1,500",17450,18130,900,-100,0.4,-1500
+At least one household member who worked part-time during the year,Labor Force Activity of Household Members Under 65,"56,200","18,870","3,200","3,000",801,"1,220",-25650,-6360,-800,-1800,-199.1,-1780
+At least one household member who was unemployed during the year,Labor Force Activity of Household Members Under 65,"16,870","5,900","1,803","1,700",600,750,-64980,-19330,-2197,-3100,-399.6,-2249.7
+No labor force activity for any household member during the year,Labor Force Activity of Household Members Under 65,"13,010","2,293",845,"1,800",238,"5,000",-68840,-22937,-3154.8,-3000,-762.1,2000
+Annual Household Income,Annual Household Income,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Lowest quintile,Annual Household Income,"4,463","1,600",520,850,203,"2,000",-77387,-23630,-3480.2,-3950.2,-796.9,-1000
+Second quintile,Annual Household Income,"29,420","7,875","1,300","1,500",500,"4,000",-52430,-17355,-2700,-3300,-499.9,1000
+Third quintile,Annual Household Income,"71,520","24,390","3,160","3,100",940,"2,800",-10330,-840,-840,-1700,-59.6,-200
+Fourth quintile,Annual Household Income,"141,400","73,310","6,000","5,000","1,200","2,000",59550,48080,2000,200,200.4,-1000
+Highest quintile,Annual Household Income,"384,800","246,700","19,000","15,500","2,500","5,000",302950,221470,15000,10700,1500.4,2000
+Poverty Status,Poverty Status,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Household Income Below Poverty Threshold,Poverty Status,"2,280","1,071",450,500,200,"3,000",-79570,-24159,-3550.3,-4299.6,-799.5,0
+Household Income Above Poverty Threshold,Poverty Status,"107,100","38,270","5,000","5,000","1,000","3,050",25250,13040,1000,200,0.4,50
+Household Net Worth,Household Net Worth,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Negative or zero,Household Net Worth,"-9,000","-7,256",600,400,300,200,-90850,-32486,-3400,-4400.3,-699.4,-2799.7
+"$1 to $4,999",Household Net Worth,"1,635","1,472",305,200,200,,-80215,-23758,-3695.3,-4599.8,-799.5,-3000
+"$5,000 to $9,999",Household Net Worth,"7,060","6,753","1,000",801,500,,-74790,-18477,-3000,-3999.5,-500,-3000
+"$10,000 to $24,999",Household Net Worth,"16,280","12,770","1,700","1,100",650,,-65570,-12460,-2300,-3700,-349.3,-3000
+"$25,000 to $49,999",Household Net Worth,"36,150","22,920","2,030","1,900",770,600,-45700,-2310,-1970,-2900,-229.5,-2399.7
+"$50,000 to $99,999",Household Net Worth,"72,480","28,860","2,575","2,500",841,"1,000",-9370,3630,-1425,-2300,-159.1,-2000
+"$100,000 to $249,999",Household Net Worth,"161,800","75,760","5,500","5,000","1,200",900,79950,50530,1500,200,200.4,-2100.2
+"$250,000 to $499,999",Household Net Worth,"350,000","213,900","13,000","12,000","1,600","2,500",268150,188670,9000,7200,600.4,-500
+"$500,000 and over",Household Net Worth,"929,900","644,300","41,000","36,300","3,600","13,000",848050,619070,37000,31500,2600.4,10000
+Health Insurance Coverage of Household Members,Health Insurance Coverage of Household Members,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Health insurance coverage for all household members all year,Health Insurance Coverage of Household Members,"115,300","41,970","5,200","6,000","1,000","4,000",33450,16740,1200,1200,0.4,1000
+No Health insurance coverage for some or all household members during the year,Health Insurance Coverage of Household Members,"18,540","5,965","1,450","1,300",550,"1,500",-63310,-19265,-2550,-3500,-449.3,-1500
+Disability of Household Members,Disability of Household Members,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+No household member with a disability,Disability of Household Members,"90,240","35,090","5,000","5,000","1,000","3,000",8390,9860,1000,200,0.4,0
+One or more household members with a disability,Disability of Household Members,"65,130","12,760","2,200","3,200",550,"3,000",-16720,-12470,-1800,-1600,-449.6,0
+Participation in Government Programs,Participation in Government Programs,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+None,Participation in Government Programs,"153,000","64,750","7,000","7,000","1,200","4,000",71150,39520,3000,2200,200.4,1000
+One or more,Participation in Government Programs,"5,833","1,850",600,600,300,900,-76017,-23380,-3399.7,-4200.4,-699.8,-2100
+SNAP (food stamps),Participation in Government Programs,"1,461",380,250,200,150,400,-80389,-24850.5,-3750.4,-4600.3,-849.2,-2600.1
+Medicaid,Participation in Government Programs,"5,625","1,836",600,570,300,750,-76225,-23394,-3399.9,-4230.4,-700,-2249.6
+Supplemental Security Income (SSI),Participation in Government Programs,"2,625",721,250,440,134,0,-79225,-24509,-3750.2,-4360.5,-866,-3000
+WIC,Participation in Government Programs,"4,516","1,706",501,400,300,0,-77334,-23524,-3499.5,-4399.7,-700,-3000
+Region,Region,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Northeast,Region,"114,400","39,200","5,500","7,100","1,000","4,000",32550,13970,1500,2300,0.4,1000
+Midwest,Region,"80,750","30,440","4,000","4,500",900,"2,000",-1100,5210,0,-300,-99.5,-1000
+South,Region,"67,940","17,170","2,800","3,600",745,"3,000",-13910,-8060,-1200,-1200,-254.8,0
+West,Region,"96,890","30,120","5,000","5,000","1,000","5,000",15040,4890,1000,200,0.4,2000
+Housing Tenure,Housing Tenure,,,,,,,-81850,-25230,-4000,-4800,-999.6,-3000
+Owner,Housing Tenure,"205,300","82,240","7,000","7,776","1,100","4,400",123450,57010,3000,2976,100.4,1400
+Renter,Housing Tenure,"2,381","2,381","1,110","1,000",500,"1,200",-79469,-22849,-2890,-3800,-499.5,-1800

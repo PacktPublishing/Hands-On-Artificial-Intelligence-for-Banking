@@ -1,0 +1,87 @@
+{
+    "details": {
+        "completed": "2025-08-08T09:12:56Z",
+        "description": "Filling station",
+        "new_balance": {
+        "amount": "5656.80",
+        "currency": "GBP"
+        },
+        "posted": "2025-08-08T09:12:56Z",
+        "type": "10218",
+        "value": {
+        "amount": "-31.49",
+        "currency": "GBP"
+        }
+    },
+    "id": "ff16391a-87d6-4aea-bbf1-23848a806a1d",
+    "metadata": {
+        "comments": [],
+        "images": [],
+        "narrative": null,
+        "tags": [
+        {
+            "date": "2018-11-29T18:47:31Z",
+            "id": "6245a043-5916-4c6e-897b-fd0f4e5e7387",
+            "user": {
+            "display_name": "robert.uk.29@example.com",
+            "id": "robert.uk.29@example.com",
+            "provider": "https://apisandbox.openbankproject.com"
+            },
+            "value": "fuel"
+        },
+        {
+            "date": "2018-11-29T18:47:30Z",
+            "id": "15b02763-88f4-4969-aa90-094724857964",
+            "user": {
+            "display_name": "robert.uk.29@example.com",
+            "id": "robert.uk.29@example.com",
+            "provider": "https://apisandbox.openbankproject.com"
+            },
+            "value": "fuel"
+        }
+        ],
+        "where": null
+    },
+    "other_account": {
+        "IBAN": null,
+        "bank": {
+        "name": "gh.29.uk",
+        "national_identifier": null
+        },
+        "holder": {
+        "is_alias": false,
+        "name": "Asda Filling Station"
+        },
+        "id": "uarGXa7wbTkRp8jL4sD1z-niV7ngP4Tr-THu5yqM5zI",
+        "kind": null,
+        "metadata": {
+        "URL": null,
+        "corporate_location": null,
+        "image_URL": null,
+        "more_info": null,
+        "open_corporates_URL": null,
+        "physical_location": null,
+        "private_alias": null,
+        "public_alias": "ALIAS_3EB96C"
+        },
+        "number": "8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+        "swift_bic": null
+    },
+    "this_account": {
+        "IBAN": "UK12 1234 5123 4517 2948 6166 077",
+        "bank": {
+        "name": "uk",
+        "national_identifier": null
+        },
+        "holders": [
+        {
+            "is_alias": false,
+            "name": ""
+        }
+        ],
+        "id": "8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+        "kind": "CURRENT PLUS",
+        "number": "17294861660",
+        "swift_bic": null
+    }
+}

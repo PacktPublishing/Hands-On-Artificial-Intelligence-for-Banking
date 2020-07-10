@@ -1,0 +1,343 @@
+#Input: Path of PNG files, one transaction one sub-folder, no space in the file name
+#Output: OCRed
+
+import subprocess
+import os
+import xml.etree.ElementTree as ET
+from sklearn import preprocessing
+import csv
+import re
+import numpy as np
+import pandas as pd
+import cv2
+import re
+import json
+import pylev
+
+
+class OCR:
+
+    #Data Dictionary with x_wconf 49
+    #it is not supposed to know what transaction it is reading
+    ########output the data header
+
+    #imgs_path is the directory that list all the images for OCR
+    def __init__(self, tesseract_script_path,dataDictFile_path=None,imgs_path='./'):
+        self.imgs_path = imgs_path
+        self.dataDictFile_path = dataDictFile_path
+        self.tesseract_script_path =tesseract_script_path
+##        self.tesseract_script_path_shell =tesseract_script_path.replace(' ','\ ')
+        self.OCRed_List =[]
+        if dataDictFile_path is not None:
+            self.data_dict_file = open(dataDictFile_path , "a")
+        else:
+            self.data_dict_file =None
+        self.img_path ='' #this path is used to read and OCR individual img, used by crop img function
+        self.org_img = None #this object is the img object that holds img_path
+
+        
+    def output_Tag(self, xmlObject,filename):
+        title = xmlObject.attrib['title']
+        if ';' in title:
+            title = title.replace(';','')
+        try:
+            bbdetail = title.split()
+        except Exception:
+            self.data_dict_file.writeline('NA')
+            return
+        bbid = xmlObject.attrib['id']
+        bbclass = xmlObject.attrib['class']
+        bbCoord_x0 = (bbdetail[1])
+        bbCoord_y0 = (bbdetail[2])
+        bbCoord_x1 = (bbdetail[3])
+        bbCoord_y1 = (bbdetail[4])
+        x_wconf = (bbdetail[6])
+        if xmlObject.text:
+            word = xmlObject.text
+        else:
+            word = 'NA'
+
+        self.data_dict_file.write(filename+'\t')
+        self.data_dict_file.write(bbid+'\t')
+        self.data_dict_file.write(bbclass+'\t')
+        self.data_dict_file.write(word+'\t')
+        self.data_dict_file.write(bbCoord_x0+'\t')
+        self.data_dict_file.write(bbCoord_y0+'\t')
+        self.data_dict_file.write(bbCoord_x1+'\t')
+        self.data_dict_file.write(bbCoord_y1+'\t')
+        self.data_dict_file.write(x_wconf+'\t')
+        self.data_dict_file.write(str(int(bbCoord_y1)-int(bbCoord_y0))+'\t')
+        self.data_dict_file.write('\n')
+        
+    ########output the data content
+    def output_XML(self, filename):
+        dataDictFile = self.dataDictFile_path
+        print('Generate CSV')
+        
+        XML_file_name = filename+'.hocr'
+        #print(filename +' being opened')
+        filedata = None
+
+        ### Replace the target string by open the XML files and read all the text from it
+        #not able to process <strong> tag...plus the fact that it is not accurate
+        try:
+            with open(XML_file_name, 'r') as file :
+                filedata = file.read()
+        except Exception:
+            print(XML_file_name+' skipped')
+            return
+        print(XML_file_name +' being opened')
+        rewrite = False
+        #clean the xml file and overwrite it
+        if '<strong>' in filedata:
+            filedata = filedata.replace('<strong>', '')
+            filedata = filedata.replace('</strong>', '')
+            rewrite = True
+        if '&quot;' in filedata:
+            filedata = filedata.replace('&quot;', '')
+            rewrite = True
+        if rewrite:
+            with open(XML_file_name, 'w') as file:
+                file.write(filedata)
+
+        try:
+            tree = ET.parse(XML_file_name) #2550x3300 pixels
+        except Exception: #in case nothing is scanned:
+            return
+        root = tree.getroot() 
+
+        ocr_carea = root.findall(".//{http://www.w3.org/1999/xhtml}div[@class='ocr_carea']")
+        #only word is outputted
+        for area in ocr_carea:
+            #output_Tag(area,filename,dataDictFile)
+            ocr_para = area.findall(".//{http://www.w3.org/1999/xhtml}p[@class='ocr_par']")
+            for para in ocr_para:
+                #output_Tag(para,filename,dataDictFile)
+                #some word shown under line
+                ocr_line = para.findall(".//{http://www.w3.org/1999/xhtml}span[@class='ocr_line']")
+                for line in ocr_line:
+                    #output_Tag(line,filename,dataDictFile)
+                    ocr_word = line.findall(".//{http://www.w3.org/1999/xhtml}span[@class='ocrx_word']")
+                    for word in ocr_word:
+                        self.output_Tag(word,filename)
+         
+        
+    #HOCR
+    def recognize(self):
+        imgs_path = self.imgs_path
+        file_list = sorted(os.listdir(imgs_path))
+        for file in file_list:
+            if file.endswith('.png'):
+                full_img_path = os.path.join(imgs_path,file)
+                print(full_img_path + ' to be OCRed')
+                command = ["bash",self.tesseract_script_path,full_img_path]
+                p= subprocess.check_output(command)
+                print(p)
+                self.OCRed_List.append(full_img_path)
+        return True
+
+    def generate_data_dict(self):
+        for file in self.OCRed_List:
+            if file.endswith('.png'):
+                self.output_XML(file)
+        return True
+
+    def crop_image_out(self, img_path, crop_img_path, x1,y1,x2,y2):
+        if self.img_path != img_path:
+            self.org_img = cv2.imread(img_path,0)
+            self.img_path = img_path
+        crop_img = self.org_img[y1:y2,x1:x2]
+        cv2.imwrite(crop_img_path,crop_img)
+        command = ["bash",self.tesseract_script_path,crop_img_path]
+        p= subprocess.check_output(command)
+        data=open(crop_img_path+'.hocr','r').read()
+        data = re.sub(r'(<.*?>|\n|\t|\ {2})','',data)
+        data= re.sub(r'(<!DOCTYPE).*(>)','',data).strip()
+        return True, data
+
+    def cluster_OCR(self,base_dir,input_file,output_file,img_full_path):
+    #OCR again the cluster words, return a new OCR file with focus OCR result
+        add_margin = 5
+        #read in csv
+        input_full_path = os.path.join(base_dir,input_file)
+        output_full_path = os.path.join(base_dir,output_file)
+        
+
+        input_f = open(input_full_path,'r')
+        output_f = open(output_full_path,'w+')
+        headers = input_f.readline()
+        output_f.write(headers)
+ 
+        #output_f.write(header+'\n')
+        i = 0
+        for line in input_f.readlines():
+            cols = line.split('\t')
+            cid = cols[0]
+            x1 = max(int(cols[2])-add_margin,0)
+            y1 = max(int(cols[3])-add_margin,0)
+            x2 = int(cols[4])+add_margin
+            y2 = int(cols[5])+add_margin
+            crop_img_path = os.path.join(base_dir,'temp_cluster_OCR_'+cols[0]+'-'+cols[2]+'_'+cols[3]+'_'+cols[4]+'_'+cols[5]+'.png')
+            #call crop_img_out
+            status, new_word = self.crop_image_out(img_full_path,crop_img_path,x1,y1,x2,y2)
+            cols[1] = new_word
+            #fill in csv
+            output_f.write(cols[0]+'\t')
+            output_f.write(cols[1]+'\t')
+            output_f.write(cols[2]+'\t')
+            output_f.write(cols[3]+'\t')
+            output_f.write(cols[4]+'\t')
+            output_f.write(cols[5])
+            output_f.write('\n')
+        return True
+
+#testing
+##transid_path = '/home/bnpp/sample/LCIM3186258SGP'
+##input_file = 'R_69040007_005.TIF.png_input.txt'
+##output_file = 'R_69040007_005.TIF.png_output.txt'
+##tesseract_script_path="/media/bnpp/SSD/opt/BNP_OCR/py_scripts/lib/SH_run_tesseract_file"
+##img_path = '/home/bnpp/sample/LCIM3186258SGP/R_69040007_005.TIF.png'
+##OCRObj = OCR(tesseract_script_path)
+##status = OCRObj.cluster_OCR(transid_path,input_file, output_file,img_path)
+##crop_img_path = '/home/bnpp/sample/LCIM3186258SGP/R_69040007_005.TIF_temp.png'
+##OCRObj.crop_image_out(img_path,crop_img_path, 77,745,307,763)
+class dataDict:
+
+
+    def __init__(self,data_dict_path,data_dict_enc_path):
+        self.data_dict_path = data_dict_path
+        self.data_dict_enc_path = data_dict_enc_path
+        return
+    
+    def output_Tag_header(self):
+        self.data_dict_file.write('filename\t')
+        self.data_dict_file.write('bbid\t')
+        self.data_dict_file.write('bbclass\t')
+        self.data_dict_file.write('word\t')
+        self.data_dict_file.write('bbCoord_x0\t')
+        self.data_dict_file.write('bbCoord_y0\t')
+        self.data_dict_file.write('bbCoord_x1\t')
+        self.data_dict_file.write('bbCoord_y1\t')
+        self.data_dict_file.write('x_wconf\t')
+        self.data_dict_file.write('font_size\t')
+        self.data_dict_file.write('\n')  
+
+    def create_data_dict(self):
+        self.data_dict_file = open(self.data_dict_path , "w+")
+        self.output_Tag_header()        
+        self.data_dict_file.close()
+        return True
+
+    ###############################################################
+    #all numbers are changed...as the exact value does not matter...
+    def replace_numbers(self,word):
+            numRep = "X"
+            word = word.replace("0",numRep)
+            word = word.replace("1",numRep)
+            word = word.replace("2",numRep)
+            word = word.replace("3",numRep)
+            word = word.replace("4",numRep)
+            word = word.replace("5",numRep)
+            word = word.replace("6",numRep)
+            word = word.replace("7",numRep)
+            word = word.replace("8",numRep)
+            word = word.replace("9",numRep)
+            return word
+    ###############################################################
+    #all numbers are changed...as the exact value does not matter...
+    def upper_words(self,word):
+        word = word.upper()
+        word= word.replace('.','')
+        word= word.replace(',','')
+        word= word.replace('+','')
+        word= word.replace('*','')
+        word= word.replace('(','')
+        word= word.replace(')','')
+        word = re.escape(word)
+        return word
+
+    #Encoded Dictionary
+    def cleanse_word(self,word_correction_obj=None):
+##        data_dict_path = self.data_dict_path
+##        data_dict_enc_path = self.data_dict_enc_path
+##        file_path = os.path.splitext(data_dict_path)[0]
+##        file_ext = os.path.splitext(data_dict_path)[1]
+        data_dict_encoded = open(self.data_dict_enc_path,'w+')
+        self.data_dict_read = open(self.data_dict_path,'r')
+        for line in self.data_dict_read:
+            line_words = line.split("\t")
+            word_no = 0
+            for word in line_words:
+                if word_no == 3:
+                    word = self.upper_words(word)
+##                    word = self.replace_numbers(word)
+                    if word_correction_obj is not None: #have corrector object = intension to correct
+                        sugg_word,score = word_correction_obj.correct_word(word)
+                        if score <= 1:
+                            word = sugg_word
+                data_dict_encoded.write(word+'\t')
+                word_no+=1
+            data_dict_encoded.write('\n')
+        self.data_dict_encoded = open(self.data_dict_enc_path,'r')
+        return
+
+
+class wordCorrection():
+    
+    def __init__(self,json_file):
+        self.list_match= []
+        json_f = open(json_file,'r')
+        self.comm_word_reload = json.load(json_f)
+
+    def correct_word(self, input_word):
+        minDist = 99999
+        best_word = ''
+        input_word_u = input_word.upper() #(can change it to lower case)
+        
+        for word in self.comm_word_reload:
+            distance = pylev.levenshtein(input_word_u,word)
+            if distance < minDist:
+                minDist = distance
+                best_word = word
+
+        if best_word != '':
+            return best_word, minDist
+        else:
+            return input_word, minDist
+
+
+#imgs_path = "/media/bnpp/SSD/00_Align/aligned_data"
+##dataDictFile_path = './DataDict.txt'
+##dataDictFile_enc_path = './DataDict_enc.txt'
+##tesseract_script_path="/media/bnpp/SSD/01_OCR/SH_run_tesseract_file"
+##aligned_path = '/media/bnpp/SSD/00_Align/aligned_data'
+##
+##print('1.i OCR')
+##folder_list = os.listdir(aligned_path)
+##print(folder_list)
+##for folder in folder_list:
+##    full_img_folder = os.path.join(aligned_path,folder)
+##    if os.path.isdir(full_img_folder): #make sure it is a folder not a file
+##        print(full_img_folder)
+##        theOCR = OCR(full_img_folder,dataDictFile_path,tesseract_script_path)
+##        theOCR.recognize()
+##        theOCR.generate_data_dict()        
+##
+##print('1.ii Encoding Data Dict')
+##thedataDict = dataDict(dataDictFile_path,dataDictFile_enc_path)
+##thedataDict.cleanse_word()
+'''TO DO: build up the dictionary
+encoder_word_dump ="encoder_word.npy"
+encoder.classes_.dump(encoder_dump)
+
+#if have time, build up the encoder
+'''
+##print('1.iii. taking filescanner data')
+##fs_files_path = '/media/bnpp/SSD/01_OCR/filescanner'
+##fs_conso_full_path = '/media/bnpp/SSD/01_OCR/filescanner_consol.txt'
+##fs_word_list_path = '/media/bnpp/SSD/01_OCR/filescanner_word.txt'
+##marked_data_dict_path = './DataDict_marked.txt'
+##fs = fileScanner(fs_files_path,fs_conso_full_path,fs_word_list_path)
+##fs.read_filescanner_files()
+##
+##fs.mark_content(dataDictFile_enc_path,marked_data_dict_path)

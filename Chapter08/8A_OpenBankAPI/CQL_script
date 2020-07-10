@@ -1,0 +1,5 @@
+use AIFinance8A
+mongoimport --db AIFinance8A --collection transactions_obp --mode upsert --file /home/jeff/Hello-OBP-DirectLogin-Python/transactions.json --jsonArray
+
+mongoimport --db AIFinance8A --collection transactions_obp --mode merge --file oneTrans.json --jsonArray
+mongoimport --collection transactions_obp --db AIFinance8A --file transactions.json

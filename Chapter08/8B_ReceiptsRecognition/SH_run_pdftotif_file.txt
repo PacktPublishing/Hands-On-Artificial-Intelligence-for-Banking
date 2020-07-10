@@ -1,0 +1,5 @@
+#!/bin/sh
+#it takes instruction from python
+echo "shell script"
+echo "$1"
+convert -density 300 "$1" -depth 8 "$2.TIF"

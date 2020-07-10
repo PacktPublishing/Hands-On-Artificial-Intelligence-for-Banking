@@ -1,0 +1,5 @@
+customer,product,type,value
+abc,deposit,balance,100
+abc,deposit,pricing,1
+bcd,loan,pricing,2
+bcd,loan,balance,100

@@ -1,0 +1,7 @@
+#!/bin/sh
+#it takes instruction from python
+echo "shell script"
+echo "$1"
+tesseract "$1" "$1" hocr
+exit 0
+
