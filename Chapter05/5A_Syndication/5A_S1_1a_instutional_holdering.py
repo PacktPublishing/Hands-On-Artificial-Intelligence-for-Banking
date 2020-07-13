@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-QUANDLKEY = '<Enter your Quandl APT key here>'
+QUANDLKEY = '<Enter your Quandl API key here>'
 """
 Created on Mon Sep 24 18:14:11 2018
 
