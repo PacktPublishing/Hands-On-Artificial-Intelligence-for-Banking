@@ -39,7 +39,7 @@ nlp = spacy.load('en_core_web_md')
 **Following is what you need for this book:**
 This is one of the most useful artificial intelligence books for machine learning engineers, data engineers, and data scientists working in the finance industry who are looking to implement AI in their business applications. The book will also help entrepreneurs, venture capitalists, investment bankers, and wealth managers who want to understand the importance of AI in finance and banking and how it can help them solve different problems related to these domains. Prior experience in the financial markets or banking domain, and working knowledge of the Python programming language are a must.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-10).
+With the following software and hardware list you can run all code files present in the book (Chapter 2 - 9).
 
 ### Software and Hardware List
 
