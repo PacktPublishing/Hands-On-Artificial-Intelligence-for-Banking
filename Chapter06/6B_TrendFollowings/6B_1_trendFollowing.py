@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-QUANDLKEY = '<Enter your Quandl APT key here>'
+QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 """
 Created on Thu Oct 25 23:19:44 2018
-
 @author: jeff
 """
 '''*************************************
 #1. Import libraries and key varable values
-
 '''
 import quandl
 import plotly
@@ -54,7 +52,6 @@ img_output =False
 gen_plot = False
 '''*************************************
 #2. Define the function to rescale the stock price according to the min and max values
-
 '''
 #input_X is a series of price
 #output_X is a series of price expressed in pixel
@@ -133,6 +130,7 @@ for tkr in tkr_list:
         output_pixel,unit = rescale(df_plot['mid'],pixel_size,min_p,max_p)
         df_next = df.iloc[window_size+i+1,:]
         next_p = df_next['mid']
+        unit = max(unit,0.000001)
         next_p_val = max(round((min(next_p,max_p)-min_p)/unit,0),0)
 
         #in case of low liquidity ETF which has the same price, no graph be drawn
