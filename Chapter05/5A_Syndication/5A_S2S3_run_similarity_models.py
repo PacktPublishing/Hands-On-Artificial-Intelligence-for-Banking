@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-QUANDLKEY = '<Enter your Quandl APT key here>'
+QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 """
 Created on Wed Oct  3 01:43:48 2018
 
@@ -15,7 +15,8 @@ import numpy as np
 import pandas as pd
 import quandl
 
-
+#input this file name as an output from 5A_S1_1b1c1d_investor_similarity.py
+INVESTOR_CLUSTER = 'investor_labels_482.pkl'
 list_fld = ['ps1','pe1','pb'
             ,'marketcap'
             ,'divyield','bvps'
@@ -62,6 +63,7 @@ def cal_F_financials(record_db_f, logreg, logreg_sc, new_debt_pct,price_offering
     F_opex = record_db_f['opex'][0]*(1+opex_growth)
     F_ebitda = F_sales - F_cor - F_sgna
     F_ebit = F_sales - F_cor - F_sgna - F_opex
+    F_WC = record_db_f['inventory'][0] + record_db_f['receivables'][0]-record_db_f['payables'][0]
     F_new_equity = new_capital_required * new_equity_pct
     F_new_debt = new_capital_required * new_debt_pct
     F_equity = record_db_f['equity'][0] + new_capital_required * new_equity_pct
@@ -70,27 +72,26 @@ def cal_F_financials(record_db_f, logreg, logreg_sc, new_debt_pct,price_offering
     
     
     #New Ratios for default risk
-    r1= F_debt / F_asset  
-    r2= wc_sales / F_asset      
-    r3= record_db_f['assetsc'][0] / record_db_f['liabilitiesc'][0]      
-    r4= F_gross_profit / record_db_f['liabilitiesc'][0]      
-    r5= ( record_db_f['gp'][0] + record_db_f['intexp'][0] ) / record_db_f['revenue'][0]  
-    r6= F_sales / record_db_f['revenue'][0]      
-    r7= ( record_db_f['equity'][0] - record_db_f['bvps'][0]*record_db_f['shareswa'][0] ) / record_db_f['assets'][0]  
-    r8= ( record_db_f['netinc'][0] + record_db_f['depamor'][0] ) / record_db_f['liabilities'][0]  
+    r1= F_debt / F_asset
+    r2= F_ebitda / F_asset
+    r3= ( record_db_f['gp'][0] + record_db_f['intexp'][0] ) / F_asset
+    r4= ( record_db_f['netinc'][0] + record_db_f['depamor'][0] ) / record_db_f['liabilities'][0]
+    r5= record_db_f['gp'][0]/F_asset
+    r6= record_db_f['gp'][0]/record_db_f['revenue'][0]
+    r7=( record_db_f['equity'][0] - record_db_f['bvps'][0]*record_db_f['shareswa'][0] ) / record_db_f['assets'][0]  
+    r8= ( record_db_f['netinc'][0] + record_db_f['depamor'][0] ) / record_db_f['liabilities'][0]
     r9= math.log(F_asset)
-    r10= F_opex / F_debt      
-    r11= F_gross_profit / F_asset      
-    r12= F_net_ppenet / F_asset      
-    r13= F_gross_profit / F_sales      
-    r14= ( record_db_f['assetsc'][0] - record_db_f['inventory'][0] - record_db_f['receivables'][0] ) / record_db_f['liabilitiesc'][0]
-    r15= ( record_db_f['assetsc'][0] - record_db_f['inventory'][0] ) / record_db_f['liabilitiesc'][0]  
-    r16= F_ebitda / F_asset      
-    r17= record_db_f['liabilitiesc'][0] / record_db_f['liabilities'][0]      
-    r18= record_db_f['liabilitiesc'][0] / record_db_f['assets'][0]      
-    r19= ( F_sales - F_cor ) / F_sales  
-    r20= F_sales / F_debt
-    F_X_test = [r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19,r20]
+    r10=(record_db_f['gp'][0] + record_db_f['intexp'][0] ) / record_db_f['revenue'][0]
+    r11=F_opex / record_db_f['liabilitiesc'][0]
+    r12=F_ebitda /record_db_f['assetsc'][0]
+    r13=F_WC/record_db_f['assets'][0]
+    r14=F_ebitda / F_sales
+    r15=( record_db_f['assetsc'][0] - record_db_f['inventory'][0] - record_db_f['receivables'][0] ) / record_db_f['liabilitiesc'][0]
+    r16=F_ebitda / F_asset
+    r17=( record_db_f['assetsc'][0] - record_db_f['inventory'][0]) / record_db_f['liabilitiesc'][0]
+    r18= F_cor / F_sales
+    r19=F_sales / F_debt
+    F_X_test = [r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13,r14,r15,r16,r17,r18,r19]
     F_X_array = np.asarray(F_X_test)
     F_X_array = F_X_array.reshape(-1,1).transpose()
     F_X_array = logreg_sc.transform(F_X_array)
@@ -222,7 +223,7 @@ else:
     list_stock_scope = list(df_tkr_ind_select['ticker'])
     #no cluster model
 
-list_scope = ['AMOV']
+#list_scope = ['AMOV']
 list_investors =[]
 dte_str = '2018-03-31'
 
@@ -234,7 +235,7 @@ investorNameList = os.listdir(stock_file_path)
 #loop through investors holding name by name to find out investor that is holding the similar stocks
 for filename in investorNameList:
     tmp_name = filename.split('.')
-    if tmp_name[1] == '.csv':
+    if tmp_name[1] == 'csv':
         investor = tmp_name[0]
         data_df = quandl.get_table("SHARADAR/SF3", paginate=True,investorname=investor,calendardate=dte_str)
         for stock in list_stock_scope:
@@ -243,17 +244,24 @@ for filename in investorNameList:
                 list_investors.append(investor)
 
 #Load the investor clustering model
-investor_model_file = 'investors_clusters_490.pkl'
-f_investor_model=open(investor_model_file,"rb")
-investor_label_df = pickle.load( f_investor_model)
+pd_investorname = pd.read_csv(filepath_or_buffer='investor_summary.csv',header=3)
+
+investor_cluster_file = INVESTOR_CLUSTER
+f_investor_cluster=open(investor_cluster_file,"rb")
+investor_label_df = pickle.load( f_investor_cluster)
+
 investor_fld = 'investorname_x'
+
 #extract the investors's cluster id
-investor_df = investor_label_df[investor_fld].isin(investorNameList)
+investor_df_select = pd_investorname[investor_fld].isin(list_investors)
+investor_df_select=investor_df_select.rename('isInvestor')
+result_combined = pd.concat([pd_investorname,investor_df_select,investor_label_df['cluster']], axis=1, sort=False)
+cluster_select = result_combined.loc[(result_combined['isInvestor'] == True)]
 
 #find out who else share the same cluster id
-select_cluster_df = investor_df.groupby['cluster']
-all_investors_df = pd.merge([select_cluster_df,investor_df], on="cluster",axis=1)        
-final_investor_list = list(all_investors_df[investor_fld])
+list_cluster = cluster_select['cluster'].unique()
+select_investor_df = result_combined['cluster'].isin(list_cluster)
+final_investor_list = list(result_combined[investor_fld])
 
 #print out the investor list
 print(str(final_investor_list))

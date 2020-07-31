@@ -3,10 +3,12 @@
 QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 """
 Created on Thu Oct 25 23:19:44 2018
+
 @author: jeff
 """
 '''*************************************
 #1. Import libraries and key varable values
+
 '''
 import quandl
 import plotly
@@ -52,6 +54,7 @@ img_output =False
 gen_plot = False
 '''*************************************
 #2. Define the function to rescale the stock price according to the min and max values
+
 '''
 #input_X is a series of price
 #output_X is a series of price expressed in pixel

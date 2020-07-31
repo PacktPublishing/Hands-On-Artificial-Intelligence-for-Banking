@@ -4,14 +4,13 @@
 Created on Fri Oct 26 22:36:56 2018
 
 @author: jeff
-ResNet codes are obatined from: https://github.com/keras-team/keras/blob/master/examples/cifar10_resnet.py
+RestNet codes are obatined from: https://github.com/keras-team/keras/blob/master/examples/cifar10_resnet.py
 Modification are done to simplify
 """
 '''*************************************
 #1. Import libraries and key varable values
 '''
 
-from __future__ import print_function
 import keras
 from keras.layers import Dense, Conv2D,Conv1D, BatchNormalization, Activation
 from keras.layers import AveragePooling2D,AveragePooling1D, Input, Flatten
@@ -38,14 +37,17 @@ tkr_list = ['DWX','TIPX','FLRN','CBND','SJNK','SRLN','CJNK','DWFI','EMTL','STOT'
 #tkr_list = ['TIPX']
 # Training parameters
 batch_size = 32  # orig paper trained all networks with batch_size=128
-epochs = 200
+#run too long
+#epochs = 200
+#epoch = 2 for demo purpose
+epochs = 2
 data_augmentation = False
 num_classes = 100
 
 n = 3
 # Model version
 # Orig paper: version = 1 (ResNet v1), Improved ResNet: version = 2 (ResNet v2)
-version = 2
+version = 1
 
 '''*************************************
 #2. Define functions

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-QUANDLKEY = '<Enter your Quandl API key here>'
+QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 """
 Created on Mon Sep 24 18:14:11 2018
 
@@ -109,5 +109,5 @@ for investor in investorNameList:
             investor_df.at[index,'action']='HOLD'
         investor_df.at[index,'scale']=this_scale
     #output the ticker’s activities of the investor
-    output_path = os.path.join(current_file_dir,'data',investor+'.csv')
+    output_path = os.path.join(current_file_dir,'data','investor_data',investor+'.csv')
     investor_df.to_csv(output_path)

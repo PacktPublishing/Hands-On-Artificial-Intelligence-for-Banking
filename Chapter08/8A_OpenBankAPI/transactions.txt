@@ -1,0 +1,37 @@
+{
+    "challenge": {
+        "allowed_attempts": 3,
+        "challenge_type": "OTP_VIA_API",
+        "id": "d8946f0b-60ca-425c-83dd-b75d446df7bd"
+    },
+    "charge": {
+        "summary": "Total charges for completed transaction",
+        "value": {
+            "amount": "2.0",
+            "currency": "GBP"
+        }
+    },
+    "details": {
+        "description": "Description abc",
+        "to_sandbox_tan": {
+            "account_id": "8ca8a7e4-6d02-48e3-a029-0b2bf89de9f0",
+            "bank_id": "gh.29.uk"
+        },
+        "value": {
+            "amount": "1000.00",
+            "currency": "GBP"
+        }
+    },
+    "end_date": "2020-07-29T16:17:05Z",
+    "from": {
+        "account_id": "1234abcd",
+        "bank_id": "test-bank"
+    },
+    "id": "9f875d95-2ea9-4fde-986a-a5e4fc0af005",
+    "start_date": "2020-07-29T16:17:05Z",
+    "status": "INITIATED",
+    "transaction_ids": [
+        ""
+    ],
+    "type": "SANDBOX_TAN"
+}

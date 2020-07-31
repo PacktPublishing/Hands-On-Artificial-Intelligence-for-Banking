@@ -1,0 +1,19 @@
+total liabilities / total assets
+EBIT / total assets
+(gross profit + interest) / total assets
+(gross profit + depreciation) / total liabilities
+gross profit / total assets
+net profit / sales
+(equity - share capital) / total assets
+(net profit + depreciation) / total liabilities
+logarithm of total assets
+(gross profit + interest) / sales
+operating expenses / short-term liabilities
+profit on sales / total assets
+constant capital / total assets
+profit on sales / sales
+(current assets - inventory - receivables) / short-term liabilities
+profit on operating activities / sales
+(current assets - inventory) / short-term liabilities
+total costs /total sales
+sales / short-term liabilities

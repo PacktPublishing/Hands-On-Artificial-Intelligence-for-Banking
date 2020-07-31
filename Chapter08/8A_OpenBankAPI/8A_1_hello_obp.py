@@ -9,11 +9,13 @@ import requests
 # Note: in order to use this example, you need to have at least one account
 # that you can send money from (i.e. be the owner).
 # All properties are now kept in one central place
+#please also run  "docker build --no-cache -f Dockerfile.obp-base -t openbankproject/obp-base . " to stand up a open banking plaform at local host. After that create username, account and consumer-key for the login.
+
 
 from props.default import *
 
 
-# You probably don't need to change those
+# update the relevant paramters: BASE_URL, API_Version, Username, password, consumer key after the server is up and running and copied these paramters from the local host server
 import lib.obp
 obp = lib.obp
 
@@ -21,6 +23,14 @@ obp.setBaseUrl(BASE_URL)
 obp.setApiVersion(API_VERSION)
 
 # Login and set authorized token
+
+#grab the following from the open bank api platform registeration page
+CONSUMER_KEY  = '<ENTER YOUR CONSUMER_KEY>'
+USERNAME = '<ENTER YOUR USERNAME>'
+PASSWORD = '<ENTER YOUR PASSWORD>'
+OUR_BANK = '<ENTER YOUR BANK>'
+#OUR_BANK = 'rbs'
+#test-bank
 obp.login(USERNAME, PASSWORD, CONSUMER_KEY)
 
 # Get current user
@@ -83,7 +93,6 @@ print("")
 print(" --- Reload account data")
 print("our account data after label update:\n{0}".format(account))
 
-
 print("")
 print(" --- Get owner transactions")
 transactions = obp.getTransactions(our_bank, our_account)
@@ -94,7 +103,7 @@ for t in transactions:
         t['details']['value']['currency'],
         t['details']['value']['amount'])
     )
-
+'''
 #add the following lines to hello-obp.py before running it
 #add lines to download the file
 print("")
@@ -102,3 +111,4 @@ print(" --- export json")
 import json
 f_json = open('transactions.json','w+')
 json.dump(transactions,f_json,sort_keys=True, indent=4)
+f_json.close()'''

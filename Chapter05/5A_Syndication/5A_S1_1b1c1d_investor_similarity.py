@@ -39,6 +39,7 @@ current_file_dir = os.path.dirname(__file__)
 #Summarize quarterly performance of investors per quarter
 input_path = os.path.join(current_file_dir,'data','investor_data')
 file_list = os.listdir(input_path)
+file_list = sorted(file_list)
 investor_pd = pd.DataFrame()
 for file in file_list:
     print(file)

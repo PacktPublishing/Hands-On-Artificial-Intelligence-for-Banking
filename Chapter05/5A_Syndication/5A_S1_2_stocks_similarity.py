@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-QUANDLKEY = '<Enter your Quandl APT key here>'
+QUANDLKEY = '<ENTER YOUR QUANDLKEY HERE>'
 """
 Created on Sun Sep 30 01:00:02 2018
 
@@ -46,8 +46,13 @@ def bench_k_means(estimator, name, data):
 '''
 #parameters
 groupby_fld = 'sicindustry'
-min_size = 30
-df_tkr = pd.read_csv('industry_tickers_list.csv')
+min_size = 10
+#make this larger if the group is bigger
+#min_size = 30
+#for fully loaded:
+#df_tkr = pd.read_csv('industry_tickers_list.csv')
+#for shorter list:
+df_tkr = pd.read_csv('industry_tickers_list_select.csv')
 f_para = open('output_para.csv','w+')
 dict_ind_tkr = {}
 
