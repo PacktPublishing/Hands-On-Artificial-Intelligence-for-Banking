@@ -51,10 +51,6 @@ With the following software and hardware list you can run all code files present
 | 7 and 9  |   Neo4j Community Version                                                            |  Ubuntu                             |
 
 
-### Discount code
-You can use this discount code (RSOPS-20P-Sharadar-bk) to get 20% of on the paid Quandl subscriptions required to execute the codes in this book. 
-(Courtesy of the author, Jeffrey Ng, CFA.)
-
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781788830782_ColorImages.pdf).
 
 
